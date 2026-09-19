@@ -136,11 +136,9 @@
         }
 
         function clearAll() {
-            if (confirm('Are you sure you want to clear all fields?')) {
-                localStorage.removeItem('weeklyFormData');
-                grammarInput.value = '';
-                vocabInput.value = '';
-            }
+            localStorage.removeItem('weeklyFormData');
+            grammarInput.value = '';
+            vocabInput.value = '';
         }
 
         grammarInput.addEventListener('input', saveData);
