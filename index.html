@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Focus Form</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #2f3438;
+            --grammar-bg: #e2e8f0;
+            --vocab-bg: #fde8e8;
+            --border-color: #e5e7eb;
+            --accent-blue: #2563eb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 16px;
+            box-sizing: border-box;
+        }
+
+        .card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            display: inline-block;
+            font-weight: 600;
+            font-size: 15px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            margin-top: 16px;
+        }
+
+        .section-title:first-child {
+            margin-top: 0;
+        }
+
+        .grammar-tag { background-color: var(--grammar-bg); color: #1e3a8a; }
+        .vocab-tag { background-color: var(--vocab-bg); color: #991b1b; }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            box-sizing: border-box;
+            background: #fafafa;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            background: #ffffff;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            background: #fff;
+            transition: background 0.2s;
+        }
+
+        button.clear-btn {
+            color: #dc2626;
+            border-color: #fca5a5;
+        }
+        button.clear-btn:hover {
+            background: #fef2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- Grammar Focus -->
+        <div>
+            <div class="section-title grammar-tag">Grammar Focus for the week:</div>
+            <input type="text" id="grammarInput" placeholder="Enter grammar topic...">
+        </div>
+
+        <!-- Vocabulary Focus -->
+        <div>
+            <div class="section-title vocab-tag">Vocabulary Focus for the week:</div>
+            <input type="text" id="vocabInput" placeholder="Enter vocabulary theme...">
+        </div>
+
+        <!-- Actions -->
+        <div class="actions">
+            <button class="clear-btn" onclick="clearAll()">Clear All</button>
+        </div>
+    </div>
+
+    <script>
+        const grammarInput = document.getElementById('grammarInput');
+        const vocabInput = document.getElementById('vocabInput');
+
+        function saveData() {
+            const data = {
+                grammar: grammarInput.value,
+                vocab: vocabInput.value
+            };
+            localStorage.setItem('weeklyFormData', JSON.stringify(data));
+        }
+
+        function loadData() {
+            const saved = localStorage.getItem('weeklyFormData');
+            if (saved) {
+                const data = JSON.parse(saved);
+                grammarInput.value = data.grammar || '';
+                vocabInput.value = data.vocab || '';
+            }
+        }
+
+        function clearAll() {
+            if (confirm('Are you sure you want to clear all fields?')) {
+                localStorage.removeItem('weeklyFormData');
+                grammarInput.value = '';
+                vocabInput.value = '';
+            }
+        }
+
+        grammarInput.addEventListener('input', saveData);
+        vocabInput.addEventListener('input', saveData);
+
+        window.onload = loadData;
+    </script>
+</body>
+</html>
