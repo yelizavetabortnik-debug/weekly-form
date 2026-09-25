@@ -7,10 +7,10 @@
     <style>
         :root {
             --bg-color: #ffffff;
-            --text-main: #2f3438;
-            --grammar-bg: #e2e8f0;
-            --vocab-bg: #fde8e8;
-            --border-color: #e5e7eb;
+            --text-main: #1e3a8a; /* Змінено на насичений темно-синій */
+            --grammar-bg: #eff6ff; /* Блакитний фон */
+            --vocab-bg: #dbeafe;  /* Трохи світліший синій фон */
+            --border-color: #bfdbfe; /* Синуватий колір для рамки */
             --accent-blue: #2563eb;
         }
 
@@ -30,7 +30,7 @@
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.08);
         }
 
         .section-title {
@@ -47,8 +47,8 @@
             margin-top: 0;
         }
 
-        .grammar-tag { background-color: var(--grammar-bg); color: #1e3a8a; }
-        .vocab-tag { background-color: var(--vocab-bg); color: #991b1b; }
+        .grammar-tag { background-color: var(--grammar-bg); color: #1e40af; }
+        .vocab-tag { background-color: var(--vocab-bg); color: #1e3a8a; }
 
         input[type="text"] {
             width: 100%;
@@ -58,13 +58,15 @@
             font-size: 14px;
             font-family: inherit;
             box-sizing: border-box;
-            background: #fafafa;
+            background: #f8fafc;
+            color: var(--text-main);
         }
 
         input[type="text"]:focus {
             outline: none;
             border-color: var(--accent-blue);
             background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
         .actions {
